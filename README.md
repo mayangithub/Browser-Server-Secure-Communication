@@ -1,2 +1,2 @@
-# IS2731-Final
-Repository for the eCommerce Security Final Project
+# IS2731
+final group project of Security of E-Commerce
