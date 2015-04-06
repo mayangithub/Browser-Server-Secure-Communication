@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.user.Message;
 import models.user.MessageManager;
 import models.user.User;
 import models.user.UserManager;
@@ -24,8 +25,7 @@ import models.user.UserRole;
  *
  * @author yanma
  */
-@WebServlet(name = "MessageCreate", urlPatterns = {"/MessageCreate"})
-public class MessageCreate extends HttpServlet {
+public class MessageCreateController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -51,10 +51,10 @@ public class MessageCreate extends HttpServlet {
 //            out.println("<!DOCTYPE html>");
 //            out.println("<html>");
 //            out.println("<head>");
-//            out.println("<title>Servlet MessageCreate</title>");            
+//            out.println("<title>Servlet MessageCreateController</title>");            
 //            out.println("</head>");
 //            out.println("<body>");
-//            out.println("<h1>Servlet MessageCreate at " + request.getContextPath() + "</h1>");
+//            out.println("<h1>Servlet MessageCreateController at " + request.getContextPath() + "</h1>");
 //            out.println("</body>");
 //            out.println("</html>");
 //        }
@@ -95,10 +95,14 @@ public class MessageCreate extends HttpServlet {
         String actionBack = request.getParameter("Back");
         
         String receiver = request.getParameter("receiver");
+        String sender = request.getParameter("sender");
         String content = request.getParameter("messageContent");        
         
         if(actionCreateMessage !=null && actionCreateMessage.equals("Send Message")) {
-            messageManager.createMessage("dog", receiver, content);
+            messageManager.createMessage(sender, receiver, content);
+            request.setAttribute("sender", sender);
+            List<Message> allMessageList = messageManager.listAllMessage(sender);
+            request.setAttribute("allMessageList", allMessageList);
             requestDispatcher = request.getRequestDispatcher("/admin/listMessages.jsp");
             requestDispatcher.forward(request, response);
         }

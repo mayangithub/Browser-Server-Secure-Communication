@@ -89,6 +89,7 @@ public class UserLoginController extends HttpServlet {
             if(isLegalUser == true) {
                 HttpSession session = request.getSession();
                 String sesionCode = SessionManager.generateSessionCode(userName);
+                session.setAttribute("userName", userName);
                 session.setAttribute("sesssionCode",sesionCode); 
                 //session will be expired after 30 mins
                 session.setMaxInactiveInterval(60 * 30);

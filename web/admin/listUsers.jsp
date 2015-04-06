@@ -67,10 +67,10 @@
                                         </form>
                                     </td> 
                                     <td style="padding-left: 5px; padding-right: 5px;">
-                                        <form action="MessageCreate" method="post">
+                                        <form action="UserList" method="post">
                                             <input type="hidden" name="userName" value="<%=user.getUserName()%>"/>
                                             <!--<input type="submit" name="sendMessage" value="Send Message" class="submit"/>-->     
-                                            <input type="submit" name="sendMessage" value="Send Message" class="btn btn-xs btn-info"/>     
+                                            <input type="submit" name="createMessage" value="Send Message" class="btn btn-xs btn-info"/>     
                                         </form>
                                     </td> 
                                 </tr>  
@@ -85,6 +85,7 @@
                 <form action="UserList" method="post" >
                     <!--<input type="submit" name="addUser" value="Add User" class="submit_list_users_add"/>-->
                     <input type="submit" name="addUser" value="Add User" class="btn btn-primary"/>
+                    <input type="submit" name="listMessage" value="List Messages" class="btn btn-info"/>
                     <!--<input type="submit" name="logOut" value="Log Out" class="submit_list_users_log_out"/>-->
                     <input type="submit" name="logOut" value="Log Out" class="btn btn-warning"/>
                 </form>

@@ -20,6 +20,11 @@ select.form-control {
     width: 35%;
 }
 
+textarea.form-control {
+    width: 35%; 
+    resize: none;
+}
+
 #div_login{
 /*    font-family: calibri;
     color: #000066;

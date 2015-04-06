@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import models.user.Message;
+import models.user.MessageManager;
 import models.user.User;
 import models.user.UserManager;
 import models.user.UserRole;
@@ -71,18 +73,34 @@ public class UserListController extends HttpServlet {
         
         RequestDispatcher requestDispatcher;
         UserManager userManager = new UserManager();
+        MessageManager messageManager = new MessageManager();
         User currentUser;
         User receiver;
         
         String actionAddUser = request.getParameter("addUser");
         String actionEditUser = request.getParameter("editUser");
         String actionRemoveUser = request.getParameter("removeUser");
-        String actionCreateMessage = request.getParameter("sendMessage");
+        String actionCreateMessage = request.getParameter("createMessage");
         String actionLogOut = request.getParameter("logOut");
+        String actionListMessage = request.getParameter("listMessage");
         
         if(actionAddUser !=null && actionAddUser.equals("Add User")) {
             requestDispatcher = request.getRequestDispatcher("/admin/addUser.jsp");
             requestDispatcher.forward(request, response);
+        }
+        else if(actionListMessage !=null && actionListMessage.equals("List Messages")) {
+            HttpSession session = request.getSession();
+            String userName = session.getAttribute("userName").toString();
+            if(userName != null){
+
+                List<Message> allMessageList = messageManager.listAllMessage(userName);
+                request.setAttribute("allMessageList", allMessageList);
+                request.setAttribute("sender", userName);
+                requestDispatcher = request.getRequestDispatcher("/admin/listMessages.jsp");
+                requestDispatcher.forward(request, response);
+            }   
+            
+            
         }
         else if(actionEditUser != null && actionEditUser.equals("Edit")) {
             String userName = request.getParameter("userName");
@@ -114,6 +132,9 @@ public class UserListController extends HttpServlet {
             if(userName != null){
                 receiver = userManager.findUser(userName);
                 request.setAttribute("receiver", receiver);
+                HttpSession session = request.getSession();
+                String senderName = session.getAttribute("userName").toString();
+                request.setAttribute("sender", senderName);
                 requestDispatcher = request.getRequestDispatcher("/admin/createMessage.jsp");
                 requestDispatcher.forward(request, response);
             }

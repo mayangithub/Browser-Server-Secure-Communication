@@ -367,6 +367,8 @@ public class UserDBManager {
             this.statement.setString(3, message.getContent());    
             this.statement.setInt(4, message.getIs_read());    
             this.statement.executeUpdate();
+            
+            System.out.println(this.statement);
             addResult = true;
             this.statement.close();
 	}
