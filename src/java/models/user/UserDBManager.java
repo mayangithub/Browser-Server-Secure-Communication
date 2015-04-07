@@ -368,7 +368,6 @@ public class UserDBManager {
             this.statement.setInt(4, message.getIs_read());    
             this.statement.executeUpdate();
             
-            System.out.println(this.statement);
             addResult = true;
             this.statement.close();
 	}
@@ -386,7 +385,7 @@ public class UserDBManager {
     public List<Message> queryAllMessages(String sender) {
         List<Message> messageList = new ArrayList<>();
 	Message message;
-        String sql = "SELECT * FROM message WHERE sender = ? ;";
+        String sql = "SELECT * FROM message WHERE sender = ? ORDER BY time;";
 	try {	
             this.statement = connection.prepareStatement(sql);
             statement.setString(1, sender);
@@ -491,7 +490,7 @@ public class UserDBManager {
      */
     public boolean updateMessageContent (int mid, String content) {
         boolean updateResult = false;
-        String sql = "UPDATE message SET is_read = 0 AND conent = ? WHERE mid = ?";
+        String sql = "UPDATE message SET is_read = 0 , content = ? WHERE mid = ?";
     	try {			
             this.statement = connection.prepareStatement(sql);
             this.statement.setString(1, content);
@@ -505,4 +504,26 @@ public class UserDBManager {
         }
         return updateResult; 
     }
+    
+    public Message findMessage(int mid) {
+        Message message = new Message();
+        String sql = "SELECT * FROM message WHERE mid = ? ;";
+        try {
+            this.statement = connection.prepareStatement(sql);
+            this.statement.setInt(1, mid);
+            this.resultSet = this.statement.executeQuery();
+            while(this.resultSet.next()) {
+                message.setMid(this.resultSet.getInt("mid"));
+                message.setSender(this.resultSet.getString("sender"));
+                message.setReceiver(this.resultSet.getString("receiver"));
+                message.setContent(this.resultSet.getString("content"));
+            }	
+            this.statement.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(UserDBManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return message;
+    }
+    
+   
 }

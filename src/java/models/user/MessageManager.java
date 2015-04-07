@@ -48,5 +48,15 @@ public class MessageManager {
     }
     
     
+    public boolean updateMessageContent (int mid, String content) {
+        return this.userDBManager.updateMessageContent(mid, content);
+    }
     
+    public Message findMessage(int mid) {
+        return this.userDBManager.findMessage(mid);
+    }
+    
+    public boolean deleteMessageBySender(User sender, int mid) {
+        return this.userDBManager.deleteMessageBySender(sender, mid);
+    }
 }

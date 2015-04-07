@@ -86,7 +86,6 @@ public class MessageListController extends HttpServlet {
             throws ServletException, IOException {
         RequestDispatcher requestDispatcher;
         UserManager userManager = new UserManager();
-        UserValidator userValidator = new UserValidator();
         String errorMessage = null;
         
         String actionListUser = request.getParameter("listUser");

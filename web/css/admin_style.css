@@ -16,6 +16,14 @@ input.form-control {
     width: 35%;
 }
 
+.form-group input[type=submit], input[type=reset] {
+    margin-right: 20px;
+}
+
+#two-buttons input[type=submit], input[type=reset] {
+    margin-right: 20px;
+}
+
 select.form-control {
     width: 35%;
 }

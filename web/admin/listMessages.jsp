@@ -56,14 +56,14 @@
                                         <form action="UserList" method="post">
                                             <input type="hidden" name="mid" value="<%=message.getMid()%>"/>
                                             <!--<input type="submit" name="editUser" value="Edit" class="submit" />-->   
-                                            <input type="submit" name="editMessage" value="Edit" class="btn btn-xs btn-default" />  
+                                            <input type="submit" name="editMessage" value="Edit Message" class="btn btn-xs btn-default" />  
                                         </form> 
                                     </td>  
                                     <td style="padding-left: 5px; padding-right: 5px;">
                                         <form action="UserList" method="post">
                                             <input type="hidden" name="mid" value="<%=message.getMid()%>"/>
                                             <!--<input type="submit" name="removeUser" value="Remove" class="submit"/>-->      
-                                            <input type="submit" name="removeMessage" value="Remove" class="btn btn-xs btn-danger" />     
+                                            <input type="submit" name="removeMessage" value="Remove Message" class="btn btn-xs btn-danger" />     
                                         </form>
                                     </td> 
                                 </tr>  
