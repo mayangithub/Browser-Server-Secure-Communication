@@ -27,12 +27,12 @@
             <div id="div_users_list">
                 <table id="table_messagelist" class="table table-hover">
                     <tr>  
-                        <th>#</th>
-                        <th>Receiver</th>
-                        <th>Time</th>
-                        <th>Content</th>
-                        <th>Status</th>
-                        <th colspan="2">Operations</th>
+                        <th style="width: 5%">#</th>
+                        <th style="width: 10%">Receiver</th>
+                        <th style="width: 15%">Time</th>
+                        <th style="width: 40%">Content</th>
+                        <th style="width: 10%">Status</th>
+                        <th colspan="2" style="width: 20%">Operations</th>
                     </tr>  
                     <%  
                         List<Message> allMessagesList = (List<Message>)request.getAttribute("allMessageList");     
@@ -40,26 +40,37 @@
                             int id = 1;
                             for(Message message : allMessagesList) {
                                 String status = "";
+                                String color = "";
+                                String content = message.getContent();
+                                
                                 if (message.getIs_read() == 0) {
                                     status = "Unread";
                                 } else {
                                     status = "Read";
                                 }
+                                
+                                if (status.equals("Unread")) {  
+                                    color = "red";
+                                }
+                                
+                                if (content.length() > 50) {
+                                    content = content.substring(0, 47) + "......";
+                                }
                     %>  
                                 <tr>
-                                    <td><%=id%></td>
-                                    <td><%=message.getReceiver()%></td>  
-                                    <td><%=message.getTime()%></td>
-                                    <td><%=message.getContent()%></td>  
-                                    <td><%=status%></td>
-                                    <td style="padding-left: 15px; padding-right: 15px;">  
+                                    <td style="width: 5%"><%=id%></td>
+                                    <td style="width: 10%"><%=message.getReceiver()%></td>  
+                                    <td style="width: 15%"><%=message.getTime()%></td>
+                                    <td style="width: 40%; word-break: break-all; text-align: left;"><%=content%></td>  
+                                    <td style="width: 10%; color: <%=color %>" ><%=status %></td>
+                                    <td style="padding-left: 5px; padding-right: 5px; width: 10%;">  
                                         <form action="UserList" method="post">
                                             <input type="hidden" name="mid" value="<%=message.getMid()%>"/>
                                             <!--<input type="submit" name="editUser" value="Edit" class="submit" />-->   
                                             <input type="submit" name="editMessage" value="Edit Message" class="btn btn-xs btn-default" />  
                                         </form> 
                                     </td>  
-                                    <td style="padding-left: 5px; padding-right: 5px;">
+                                    <td style="padding-left: 5px; padding-right: 5px; width: 10%;">
                                         <form action="UserList" method="post">
                                             <input type="hidden" name="mid" value="<%=message.getMid()%>"/>
                                             <!--<input type="submit" name="removeUser" value="Remove" class="submit"/>-->      

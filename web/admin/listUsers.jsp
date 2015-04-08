@@ -52,7 +52,7 @@
                                     <td><%=user.getUserName()%></td>  
                                     <td><%=user.getEmail()%></td>
                                     <td><%=roles%></td>  
-                                    <td style="padding-left: 15px; padding-right: 15px;">  
+                                    <td style="padding-left: 5px; padding-right: 5px;">  
                                         <form action="UserList" method="post">
                                             <input type="hidden" name="userName" value="<%=user.getUserName()%>"/>
                                             <!--<input type="submit" name="editUser" value="Edit" class="submit" />-->   

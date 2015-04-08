@@ -104,8 +104,12 @@ textarea.form-control {
     width:80%;		
     margin-left: auto;
     margin-right: auto;
+    text-align: center;
 }	 
 
+#div_users_list th {
+    text-align: center;
+}
 #two-buttons{
     text-align: center;
 }
@@ -178,8 +182,4 @@ textarea.form-control {
     font-family: calibri;
     color: #cc0000;
 }
-
-
-
-
 

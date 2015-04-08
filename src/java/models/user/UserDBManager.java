@@ -358,8 +358,8 @@ public class UserDBManager {
     public boolean addMessage(Message message) {
         boolean addResult = false;
 	String sql = "INSERT INTO message"
-                    + "(sender, receiver, content, is_read) VALUES"
-                    + "(? , ? , ? , ?)";
+                    + "(sender, receiver, time, content, is_read) VALUES"
+                    + "(? , ? , NOW(), ? , ?)";
     	try {			
             this.statement = connection.prepareStatement(sql);
             this.statement.setString(1, message.getSender());
@@ -416,7 +416,7 @@ public class UserDBManager {
     public List<Message> queryAllMessagesForReceiver(String receiver) {
         List<Message> messageList = new ArrayList<>();
 	Message message;
-        String sql = "SELECT * FROM message WHERE receiver = ?";
+        String sql = "SELECT * FROM message WHERE receiver = ? ORDER BY time";
 	try {	
             this.statement = connection.prepareStatement(sql);
             statement.setString(1, receiver);
@@ -490,7 +490,7 @@ public class UserDBManager {
      */
     public boolean updateMessageContent (int mid, String content) {
         boolean updateResult = false;
-        String sql = "UPDATE message SET is_read = 0 , content = ? WHERE mid = ?";
+        String sql = "UPDATE message SET is_read = 0 , content = ?, time = NOW() WHERE mid = ?";
     	try {			
             this.statement = connection.prepareStatement(sql);
             this.statement.setString(1, content);
@@ -517,6 +517,8 @@ public class UserDBManager {
                 message.setSender(this.resultSet.getString("sender"));
                 message.setReceiver(this.resultSet.getString("receiver"));
                 message.setContent(this.resultSet.getString("content"));
+                message.setIs_read(this.resultSet.getInt("is_read"));
+                message.setTime(this.resultSet.getTimestamp("time"));
             }	
             this.statement.close();
         } catch (SQLException ex) {

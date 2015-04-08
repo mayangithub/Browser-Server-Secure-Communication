@@ -59,4 +59,8 @@ public class MessageManager {
     public boolean deleteMessageBySender(User sender, int mid) {
         return this.userDBManager.deleteMessageBySender(sender, mid);
     }
+    
+    public boolean updateMessageToRead(int mid) {
+        return this.userDBManager.updateMessageToRead(mid);
+    }
 }
