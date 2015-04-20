@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -91,7 +92,7 @@ public class UserListController extends HttpServlet {
             requestDispatcher = request.getRequestDispatcher("/admin/addUser.jsp");
             requestDispatcher.forward(request, response);
         }
-        else if(actionEditUser != null && actionEditUser.equals("Edit")) {
+        else if(actionEditUser != null && actionEditUser.equals("Edit User")) {
             String userName = request.getParameter("userName");
             if(userName != null){
                 currentUser = userManager.findUser(userName);
@@ -100,7 +101,7 @@ public class UserListController extends HttpServlet {
                 requestDispatcher.forward(request, response);
             }
         }
-        else if(actionRemoveUser != null && actionRemoveUser.equals("Remove")) {
+        else if(actionRemoveUser != null && actionRemoveUser.equals("Remove User")) {
             String userName = request.getParameter("userName");
             if(userName != null){
                 currentUser = userManager.findUser(userName);
@@ -138,6 +139,8 @@ public class UserListController extends HttpServlet {
                 HttpSession session = request.getSession();
                 String senderName = session.getAttribute("userName").toString();
                 request.setAttribute("sender", senderName);
+                String publicKey = userManager.findPublicKey(receiver.getUserName());
+                request.setAttribute("publicKey", publicKey);
                 requestDispatcher = request.getRequestDispatcher("/admin/createMessage.jsp");
                 requestDispatcher.forward(request, response);
             }

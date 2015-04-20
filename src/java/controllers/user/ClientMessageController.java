@@ -6,7 +6,6 @@
 package controllers.user;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import models.user.Message;
 import models.user.MessageManager;
-import models.user.UserManager;
 
 /**
  *
@@ -90,14 +88,14 @@ public class ClientMessageController extends HttpServlet {
             request.setAttribute("client", message.getReceiver());
             List<Message> receiverMessageList = messageManager.queryAllMessagesForReceiver(message.getReceiver());
             request.setAttribute("receiverMessageList", receiverMessageList);
-            requestDispatcher = request.getRequestDispatcher("/client/clientMain.jsp");
+            requestDispatcher = request.getRequestDispatcher("/client/clientMessage.jsp");
             requestDispatcher.forward(request, response);
         } else if (actionBack != null && actionBack.equals("Back")) {
             Message message = messageManager.findMessage(mid);
             request.setAttribute("client", message.getReceiver());
             List<Message> receiverMessageList = messageManager.queryAllMessagesForReceiver(message.getReceiver());
             request.setAttribute("receiverMessageList", receiverMessageList);
-            requestDispatcher = request.getRequestDispatcher("/client/clientMain.jsp");
+            requestDispatcher = request.getRequestDispatcher("/client/clientMessage.jsp");
             requestDispatcher.forward(request, response);
         } else {
             requestDispatcher = request.getRequestDispatcher("/error404.jsp");

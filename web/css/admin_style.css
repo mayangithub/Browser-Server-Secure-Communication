@@ -183,3 +183,30 @@ textarea.form-control {
     color: #cc0000;
 }
 
+
+.register_message {
+    text-align: center;
+    font-family: calibri;
+    color: #0099cc;
+}
+
+.activation_message {
+    text-align: center;
+    font-family: calibri;
+    color: #009966;
+}
+
+#td_not_activated {
+    color: #cc0000;
+    font-weight: bold;
+}
+
+#td_activated {
+    color: #009966;
+    font-weight: bold;
+}
+
+div.div_login_eror  {
+    margin-top: 50px;
+    text-align: center;
+}
