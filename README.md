@@ -18,5 +18,5 @@ My responsibilities:<br />
 2. database setup and update<br />
 3. client/admin messaging module<br />
 4. client/admin messaging controller<br />
-5. javascript encrypt/decrypt private key using AES<br />
-6. javascript encrypt/decrypt messages using RSA<br />
+5. Integrate javascript encrypt/decrypt private key using AES<br />
+6. Integrate javascript encrypt/decrypt messages using RSA<br />
