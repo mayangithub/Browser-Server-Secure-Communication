@@ -2,8 +2,9 @@
 Final group project of Security of E-Commerce<br />
 <br />
 Scenarios:<br />
-1. We want to make sure that messages passed to a particular authenticated client can only be read by the client.<br />
-2. After logon, a second passcode is required to unlock a message to insure that only the authenticated user can read it.<br />
+1. Establish a more secure communication channel between doctors and their patients.<br />
+2. We want to make sure that messages passed to a particular authenticated client can only be read by the client.<br />
+3. After logon, a second passcode is required to unlock a message to insure that only the authenticated user can read it.<br />
 <br />
 Functions:<br />
 1. Establish secure channel (https)<br />
